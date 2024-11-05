@@ -1,0 +1,5 @@
+Masih Dalam Tahap Pengembangan.
+
+Untuk Image nya ada di link ini teh:
+https://drive.google.com/drive/folders/1RZBRaU_OriGZpZMzdVVS2b63svsxhwCo?usp=sharing
+Dikarenkan size folder imagenya agak besar jadi dibisa dipush ke gitlab

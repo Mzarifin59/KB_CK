@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sticky-sidebar {
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 1rem; 
+    z-index: 10; 
+  }
+  

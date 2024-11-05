@@ -1,0 +1,113 @@
+:root {
+    --primary-color: #302AE6;
+    --secondary-color: #536390;
+    --font-color: #424242;
+    --bg-color: #fff;
+    --heading-color: #292922;
+
+   
+    /* CARD-STYLE */
+    --card-bg-color:  #ffff;
+    --card-font-color : #141414;
+
+    
+  }
+  
+  [data-theme="dark"] {
+    --primary-color: #9A97F3;
+    --secondary-color: #818cab;
+    --font-color: #e1e1ff;
+    --bg-color: #161625;
+    --heading-color: #818cab;
+
+    /* CARD-STYLE */
+    --card-bg-color:  #141414;
+    --card-font-color : #ffff;
+  }
+
+
+  /* STYLE*/
+    
+    body {
+      background-color: var(--bg-color);
+      color: var(--font-color);
+    }
+
+    .card-container{
+        background-color: var(--card-bg-color);
+        color : var(--card-font-color);
+      }
+
+
+
+    /* STYLE BUTTON LIGHT, DARK */
+    
+    .theme-switch-wrapper {
+      display: flex;
+      align-items: center;
+    }
+    
+    .theme-switch {
+      display: inline-block;
+      height: 50px;
+      position: relative;
+      width: 50px;
+    }
+    
+    .theme-switch input {
+      display: none;
+    }
+    
+    .slider {
+      background-color: rgb(228, 223, 223);
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transition: 0.4s;
+      border-radius: 12px;
+    }
+    
+    .slider:before {
+      content: "";
+      position: absolute;
+      height: 42px;
+      width: 42px;
+      left: 4px;
+      bottom: 4px;
+  
+      transition: 0.4s;
+      border-radius: 10px;
+    }
+    
+    input:checked + .slider:before {
+      transform: translateY(-50px);
+    }
+    
+    .icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      transition: opacity 0.4s;
+    }
+    
+    .sun-icon {
+      opacity: 1;
+    }
+    
+    .moon-icon {
+      opacity: 0;
+    }
+    
+    input:checked + .slider .sun-icon {
+      opacity: 0;
+    }
+    
+    input:checked + .slider .moon-icon {
+      opacity: 1;
+    }
+     
