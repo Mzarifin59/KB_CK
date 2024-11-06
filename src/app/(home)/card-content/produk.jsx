@@ -23,10 +23,9 @@ export default function ProdukCloud({produk}) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[35px]">
             {produk.map((product) => (
               <>
-              <Card className="max-w-[595px] max-h-[260px] card-primary-color shadow-lg rounded-lg transition-all transform hover:scale-105 hover:bg-[#136AAD] mx-auto group">
+              <Card key={product.documentId} className="max-w-[595px] max-h-[260px] card-primary-color shadow-lg rounded-lg transition-all transform hover:scale-105 hover:bg-[#136AAD] mx-auto group">
               <Link href={`/produk-cloud/${product.slug}`}>
                 <Produk
-                  key={product.documentId}
                   urlImage={product.IconImage[0]?.url}
                   cardTitle={product.text}
                   cardDescription={product.description}

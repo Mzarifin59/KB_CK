@@ -4,11 +4,8 @@ const MY_SECRET_TOKEN = process.env.REVALIDATE_TOKEN;
 
 export async function POST(request) {
   const token = request.headers.get('authorization');
-  const path = request.nextUrl.searchParams.get('path');
+  const paths = request.nextUrl.searchParams.get('paths')
 
-
-  console.log("Webhook received from Strapi");
-  // Verifikasi token
   if (token !== `Bearer ${MY_SECRET_TOKEN}`) {
     console.log("Unauthorized access attempt");
     return new Response(JSON.stringify({
@@ -18,12 +15,17 @@ export async function POST(request) {
   }
 
   if (path) {
-    revalidatePath(path);
-    console.log("Revalidated path:", path);
-    return new Response(JSON.stringify({ revalidated: true, now: Date.now() }), {
-      status: 200,
+    const pathList = paths.split(',')
+    pathList.forEach((path) => revalidatePath(path.trim()))
+
+    return new Response(JSON.stringify({
+      revalidated: true,
+      paths: pathList,
+      now: Date.now()
+    }), {
       headers: { 'Content-Type': 'application/json' },
-    });
+      status: 200
+    })
   }
 
   return new Response(JSON.stringify({

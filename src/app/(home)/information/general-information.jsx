@@ -31,9 +31,8 @@ export default function informasiUmum({article}) {
         />
         <div className="font-bold relative">
           {article.map((articles) => (
-            <Link href="">
+            <Link key={articles.documentId} href={`/informasi-umum/${articles.slug}`}>
             <Informasi
-            key={articles.documentId}
             urlImage="/images/logo_cloudkilat.png"
             link={articles.title}
           />

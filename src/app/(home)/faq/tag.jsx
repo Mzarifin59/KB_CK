@@ -1,10 +1,7 @@
-"use client";
-
 import Tag from "@/components/Beranda/Questions/articletag";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { getAllTags } from "@/app/fetch/res";
 import Link from "next/link";
-import { useEffect, useState } from "react"; 
 
 const tagColor = [
   { "tag": "domain", "color": "bg-pink-200" },
@@ -21,16 +18,8 @@ const tagColor = [
   { "tag": "DNS", "color": "bg-blue-200" },
 ];
 
-export default function TagArticle() {
-  const [tags, setTags] = useState([]);
-
-  useEffect(() => {
-    const fetchTags = async () => {
-      const fetchedTags = await getAllTags();
-      setTags(fetchedTags);
-    };
-    fetchTags();
-  }, []);
+export default async function TagArticle() {
+  const tags = await getAllTags();
 
   return (
     <Card className="border border-gray-300 rounded-l-lg bg-transparent w-full max-w-md rounded-lg overflow-hidden">

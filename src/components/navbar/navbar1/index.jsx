@@ -33,7 +33,6 @@ const Page = () => {
               <Image
                 src="/images/kilat-logo.png"
                 alt="Cloudkilat Logo"
-                layout="responsive"
                 width={150}
                 height={50}
               />

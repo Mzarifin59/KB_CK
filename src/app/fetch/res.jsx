@@ -9,9 +9,27 @@ export async function getAllCategories() {
     return category;
 }
 
+{/* Fetch Data Produk At Home Page */}
+export async function getHomeProduk(){
+    const res = await fetch(process.env.BASE_URL_FETCH + '/categories?filters[documentId][0]=nb34mangs&filters[documentId][1]=uydab242avgvd&filters[documentId][2]=mjctegtlz9638lwi0dywme9y&filters[documentId][3]=e2hbf4i830n5ipfq9jokd7rc&populate[IconImage][fields][0]=url&populate[IconImage][fields][1]=name', {cache: 'force-cache'});
+    const data = await res.json();
+    const produk = data.data;
+
+    return produk;
+}
+
+{/* Fetch Data Portal At Home Page */}
+export async function getHomePortal(){
+    const res = await fetch(process.env.BASE_URL_FETCH + '/categories?filters[documentId][0]=habsd68028adb&filters[documentId][1]=lys70sv9coi38e7wggftjclz&filters[documentId][2]=yausdb23939dba&filters[documentId][3]=yyn7bwn9o217vec2ah5i1fjn&populate[IconImage][fields][0]=url&populate[IconImage][fields][1]=name&sort[0]=documentId:asc', {cache: 'force-cache'});
+    const data = await res.json();
+    const portal = data.data;
+
+    return portal;
+}
+
 {/* Fetch Categories with Query */}
 export async function getCategories(){
-    const res = await fetch(process.env.BASE_URL_FETCH + 'categories?populate[IconImage][fields][0]=name&populate[IconImage][fields][1]=url&populate[articles][fields][0]=title&populate[articles][fields][1]=slug&populate[ChildCategories][fields][0]=text&populate[ChildCategories][fields][1]=slug&populate[ChildCategories][populate][articles][fields][0]=title&populate[ChildCategories][populate][articles][fields][1]=slug', {cache: "force-cache"});
+    const res = await fetch(process.env.BASE_URL_FETCH + '/categories?populate[IconImage][fields][0]=name&populate[IconImage][fields][1]=url&populate[articles][fields][0]=title&populate[articles][fields][1]=slug&populate[ChildCategories][fields][0]=text&populate[ChildCategories][fields][1]=slug&populate[ChildCategories][populate][articles][fields][0]=title&populate[ChildCategories][populate][articles][fields][1]=slug', {cache: "force-cache"});
     const data = await res.json();
     const category = data.data;
 
@@ -77,21 +95,14 @@ export async function getArticleByTag(slug){
 {/* Fetch FAQ */}
 
 {/* Fetch Populate All FAQ */}
-export async function getAllFaq(page=1) {
-    const pageSize = 8; 
-    try {
-        const response = await fetch(`http://dev-kb2-migration-data.cloudkilat.my.id/api/faqs?pagination[page]=${page}&pagination[pageSize]=${pageSize}`, {
+export async function getAllFaq() {
+        const response = await fetch(`${process.env.BASE_URL_FETCH}/faqs?pagination[page]=1&pagination[pageSize]=8`, {
             cache: 'force-cache',
         });
         const data = await response.json();
         const faq = data.data;
-        const totalPages = data.meta.pagination.pageCount; 
 
-        return { faq, totalPages }; 
-    } catch (error) {
-        console.error("Error fetching FAQs:", error);
-        return { faq: [], totalPages: 0 };
-    }
+        return faq; 
 }
 
 {/* Fetch Faq with Pagination Page Size = 8 Dynamic */}
@@ -107,7 +118,7 @@ export async function getPaginationFaq(page) {
 
 {/* Fetch Populate All Tag */}
 export async function getAllTags() {
-    const res = await fetch('http://dev-kb2-migration-data.cloudkilat.my.id/api/tags?populate=*', {cache: "force-cache"});
+    const res = await fetch(process.env.BASE_URL_FETCH + '/tags?populate=*', {cache: "force-cache"});
     const data = await res.json();
     const tag = data.data;
 
