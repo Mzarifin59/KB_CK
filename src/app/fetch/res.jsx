@@ -75,34 +75,41 @@ export async function getArticleInformasiUmum(){
 }
 
 {/* Fetch Articles That Category is Informasi Umum */}
-export async function getAllInformasiUmum(){
-    const res = await fetch(process.env.BASE_URL_FETCH + '/articles?filters[category][text][$eq]=Informasi Umum&populate[category][fields][0]=text&populate[category][fields][1]=slug&pagination[page]=1&pagination[pageSize]=12', {cache: 'force-cache'});
+export async function getAllInformasiUmum(page=1){
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_FETCH;
+    const res = await fetch(`${baseUrl}/articles?filters[category][text][$eq]=Informasi Umum&populate[category][fields][0]=text&populate[category][fields][1]=slug&pagination[page]=${page}&pagination[pageSize]=12`, {cache: 'force-cache'});
     const data = await res.json();
-    const information = data.data;
-
-    return information;
+    
+    return {
+        articles: data.data,
+        pagination: data.meta.pagination,
+    }
 }
 
 {/* Fetch Articles with Filters By tag */}
-export async function getArticleByTag(slug){
-    const res = await fetch(`${process.env.BASE_URL_FETCH}/articles?filters[tags][slug][$eq]=${slug}&populate[tags][fields][0]=name&populate[tags][fields][1]=slug&pagination[page]=1&pagination[pageSize]=9`, {cache: 'force-cache'});
+export async function getArticleByTag(slug, page=1){
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_FETCH;
+    const res = await fetch(`${baseUrl}/articles?filters[tags][slug][$eq]=${slug}&populate[tags][fields][0]=name&populate[tags][fields][1]=slug&pagination[page]=${page}&pagination[pageSize]=9`, {cache: 'force-cache'});
     const data = await res.json();
-    const categoryTag = data.data;
-
-    return categoryTag;
+    
+    return {
+        articles: data.data,
+        pagination: data.meta.pagination,
+    }
 }
 {/* --------------------------------------------------------------------------------------------------------- */}
 {/* Fetch FAQ */}
 
 {/* Fetch Populate All FAQ */}
-export async function getAllFaq() {
-        const response = await fetch(`${process.env.BASE_URL_FETCH}/faqs?pagination[page]=1&pagination[pageSize]=8`, {
-            cache: 'force-cache',
-        });
-        const data = await response.json();
-        const faq = data.data;
-
-        return faq; 
+export async function getAllFaq(page=1) {
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_FETCH;
+        const res = await fetch(`${baseUrl}/faqs?pagination[page]=${page}&pagination[pageSize]=8`, {cache: 'force-cache'});
+        const data = await res.json();
+        
+        return {
+            articles: data.data,
+            pagination: data.meta.pagination,
+        }
 }
 
 {/* Fetch Faq with Pagination Page Size = 8 Dynamic */}

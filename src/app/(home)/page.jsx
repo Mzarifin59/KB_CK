@@ -5,12 +5,12 @@ import FAQ from "./faq/faqs/question";
 import { getHomeProduk, getHomePortal, getAllTags, getAllFaq, getArticleInformasiUmum} from "@/app/fetch/res";
 
 
-export default async function Coba() {
+export default async function HomePage() {
   const produk = await getHomeProduk();
   const portal = await getHomePortal();
   const article = await getArticleInformasiUmum();
-  const tag = await getAllTags();
-  const faq = await getAllFaq();
+  const tags = await getAllTags();
+  const faq = await getAllFaq()
   return (
     <div> 
       <Produk produk={produk}/>
@@ -19,7 +19,7 @@ export default async function Coba() {
       </div>
       <Information article={article}/>
       <div className="bg-sky-blue">
-        <FAQ faq={faq}/>
+        <FAQ faq={faq} tags={tags}/>
       </div>
     </div>
   );

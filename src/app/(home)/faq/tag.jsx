@@ -1,6 +1,7 @@
+'use client';
+
 import Tag from "@/components/Beranda/Questions/articletag";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { getAllTags } from "@/app/fetch/res";
 import Link from "next/link";
 
 const tagColor = [
@@ -18,8 +19,8 @@ const tagColor = [
   { "tag": "DNS", "color": "bg-blue-200" },
 ];
 
-export default async function TagArticle() {
-  const tags = await getAllTags();
+export default function TagArticle({tags}) {
+
 
   return (
     <Card className="border border-gray-300 rounded-l-lg bg-transparent w-full max-w-md rounded-lg overflow-hidden">

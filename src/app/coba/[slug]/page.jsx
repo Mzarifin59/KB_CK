@@ -1,3 +1,5 @@
+'use client';
+
 import { getCategoryDynamic } from "@/app/fetch/res";
 
 export default async function Coba({params}){

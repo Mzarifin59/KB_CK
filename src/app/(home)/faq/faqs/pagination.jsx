@@ -6,24 +6,20 @@ import {
 } from "@/components/ui/pagination";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function PaginationFaq({ currentPage, setCurrentPage, totalPages }) {
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
+export default function PaginationFaq({ currentPage, totalPages, onPageChange }) {
+  const handlePrevious = () => {
+    if (currentPage > 1) onPageChange(currentPage - 1);
   };
 
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+  const handleNext = () => {
+    if (currentPage < totalPages) onPageChange(currentPage + 1);
   };
 
   return (
     <Pagination>
       <PaginationContent>
         <PaginationItem
-          onClick={handlePrev}
+          onClick={handlePrevious}
           className={`bg-[#136AAD] p-1 rounded-md dark:rounded-full w-10 h-10 hover:bg-gray-200 dark:hover:bg-gray-500 mr-10 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
           <div className="flex items-center justify-center h-full">

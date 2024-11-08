@@ -4,7 +4,7 @@ const MY_SECRET_TOKEN = process.env.REVALIDATE_TOKEN;
 
 export async function POST(request) {
   const token = request.headers.get('authorization');
-  const paths = request.nextUrl.searchParams.get('paths')
+  const path = request.nextUrl.searchParams.get('path')
 
   if (token !== `Bearer ${MY_SECRET_TOKEN}`) {
     console.log("Unauthorized access attempt");
@@ -15,12 +15,11 @@ export async function POST(request) {
   }
 
   if (path) {
-    const pathList = paths.split(',')
-    pathList.forEach((path) => revalidatePath(path.trim()))
+    revalidatePath(path);
 
     return new Response(JSON.stringify({
       revalidated: true,
-      paths: pathList,
+      path: path,
       now: Date.now()
     }), {
       headers: { 'Content-Type': 'application/json' },
